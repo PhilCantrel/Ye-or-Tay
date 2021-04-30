@@ -6,19 +6,20 @@ const yeQuoteUrl = 'https://api.kanye.rest/'
 
 // Attach mp3 soundbites to constants
 
-var kanyeYes = new Audio('kanyeYes.mp3');
-var kanyeNo = new Audio('kanyeNo.mp3');
-var taylorYes = new Audio('taylorYes.mp3');
-var taylorNo = new Audio('taylorNo.mp3');
+var kanyeYes = new Audio('media/kanyeYes.mp3');
+var kanyeNo = new Audio('media/kanyeNo.mp3');
+var taylorYes = new Audio('media/taylorYes.mp3');
+var taylorNo = new Audio('media/taylorNo.mp3');
 
 
 
-// Declare quote variables
+// Declare needed variables and set score to 0
 
-let trueMeansTay, tayOrYeQuote
+let trueMeansTay
 let score = 0
 
-// Functions that request a quote from the Swift & West quote APIs
+// Functions that request a quote from the Swift and West quote APIs
+// and then change the displayed quote to the newly received quote
 
 function getTayQuote() {
     fetch(tayQuoteUrl)
@@ -45,7 +46,7 @@ const scoreP = document.querySelector("p.score")
 const resultP = document.querySelector("p.result")
 
 // Function that randomly generates a boolean (true means tay, false for ye)
-// and calls the corresponding quote generation function, then displays the quote
+// and calls the corresponding quote request and display function
 
 function tayOrYe() {
     trueMeansTay = Math.random() < 0.5
@@ -57,6 +58,10 @@ function tayOrYe() {
         console.log(trueMeansTay)
     }
 }
+
+// Functions for the Swift and West button/picture even listeners
+// Steps the score, shows a correct/incorrect message, plays a corresponding soundbite
+// Re-runs the main function to get a new quote and coninue the game
 
 function onKanyeClick() {
     if (trueMeansTay) {
@@ -90,10 +95,12 @@ function onTaylorClick() {
     }
 }
 
-
+// If the Swift or West pictures are clicked, the correspoding funtion is called
 
 kanyePic.addEventListener("click", onKanyeClick)
 taylorPic.addEventListener("click", onTaylorClick)
+
+// Calls the main function when the site loads, which displays the first quote
 
 tayOrYe()
 
