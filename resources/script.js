@@ -52,10 +52,8 @@ function tayOrYe() {
     trueMeansTay = Math.random() < 0.5
     if (trueMeansTay) {
         getTayQuote()
-        console.log(trueMeansTay)
     } else {
         getYeQuote()
-        console.log(trueMeansTay)
     }
 }
 
